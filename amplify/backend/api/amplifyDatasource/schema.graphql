@@ -1,0 +1,11 @@
+type Link @model
+  @auth(
+    rules: [
+      { allow: owner },
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  key: String
+  destination: String
+  }
