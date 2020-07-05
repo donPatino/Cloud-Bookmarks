@@ -100,6 +100,7 @@ const App = () => {
           >
             Add
           </Button>
+          <AmplifySignOut />
         </Toolbar>
       </AppBar>
 
