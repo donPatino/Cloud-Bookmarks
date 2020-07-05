@@ -18,6 +18,7 @@ import {
 import LinkTable from './Components/LinkTable';
 import AddLink from './Components/AddLink';
 import RedirectUI from './Components/RedirectUI';
+import NoMatch from './Components/NoMatch';
 
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import Amplify from '@aws-amplify/core';
@@ -120,9 +121,7 @@ const App = () => {
             <RedirectUI/>
           </Route>
           
-          {/*
           <Route component={NoMatch} />
-          */}
           
         </Switch>
       </div>
