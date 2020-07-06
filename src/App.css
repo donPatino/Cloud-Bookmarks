@@ -25,3 +25,9 @@ form {
     color: red;
     font-weight: bold;
 }
+
+:root {
+    --amplify-primary-color: #3f51b5;
+    --amplify-primary-tint: #0000A0;
+    --amplify-primary-shade: #ADD8E6;
+  }

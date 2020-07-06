@@ -20,9 +20,10 @@ import AddLink from './Components/AddLink';
 import RedirectUI from './Components/RedirectUI';
 import NoMatch from './Components/NoMatch';
 
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
 import Amplify from '@aws-amplify/core';
 import awsconfig from "./aws-exports";
+import { red } from '@material-ui/core/colors';
 Amplify.configure(awsconfig);
 
 const App = () => {
@@ -51,7 +52,7 @@ const App = () => {
     let links = await DataStore.query(Link);
     setLinks(links);
   };
-  
+
   const queryLink = async (id) => {
     const link = await DataStore.query(Link, c =>
       c.key("eq", id)
@@ -78,6 +79,8 @@ const App = () => {
   // Need to add a sign out listener that will clear datastore
 
   return (
+    <AmplifyAuthenticator usernameAlias="email">
+        <AmplifySignIn headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
     <Router>
 
       <AppBar>
@@ -127,7 +130,8 @@ const App = () => {
         </Switch>
       </div>
     </Router>
+    </AmplifyAuthenticator>
   );
 };
 
-export default withAuthenticator(App);
+export default App;
