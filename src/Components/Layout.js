@@ -6,8 +6,14 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from './Header';
 
 const Layout = ({children}) => (
-    <AmplifyAuthenticator usernameAlias="email">
-        <AmplifySignIn headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
+    <AmplifyAuthenticator
+        style={{
+            display: 'flex',
+            justifyContent: 'center',
+        }}
+        usernameAlias="email"
+    >
+        <AmplifySignIn  headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
         <Router>
             <Header />
 
