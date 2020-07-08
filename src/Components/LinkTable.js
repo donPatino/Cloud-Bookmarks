@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 import {
   Button,
+  Grid,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
   TableHead,
   TableRow,
 } from '@material-ui/core';
@@ -29,7 +29,7 @@ const deleteUrlButton = async (link) => {
   // console.log(linkToDelete);
 };
 
-const getMoreResults = () => {};
+// const getMoreResults = () => {};
 
 // const deleteUrlButton = async (id, index, urls, updateUrls) => {
 //   try {
@@ -72,71 +72,68 @@ const getMoreResults = () => {};
 let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
 
   return (
-  <div className="container">
-    <div>
-    </div>
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              Key
-            </TableCell>
-            <TableCell>
-              Destination
-            </TableCell>
-            <TableCell>
-              Actions
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+    <Grid item>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                Key
+              </TableCell>
+              <TableCell>
+                Destination
+              </TableCell>
+              <TableCell>
+                Actions
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
 
-          {
-            links.map((link, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <Link to={`/r/${link.key}`}>{link.key}</Link>
-                </TableCell>
-                <TableCell>
-                  {link.destination}
-                </TableCell>
-                <TableCell>
-                  <Button variant="outlined" color="secondary" onClick={() => {deleteUrlButton(link)}}>Delete</Button>
-                </TableCell>
-              </TableRow>
-            ))
-          }
+            {
+              links.map((link, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Link to={`/r/${link.key}`}>{link.key}</Link>
+                  </TableCell>
+                  <TableCell>
+                    {link.destination}
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="outlined" color="secondary" onClick={() => {deleteUrlButton(link)}}>Delete</Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            }
 
-        </TableBody>
-        {/*
-        <TableFooter>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell align="center">
-              <Button
-                variant="contained"
-                color="primary"
-                disabled={nextToken===null}
-                onClick={
-                  async () => {
-                    let [tmpUrls, tmpNextToken] = await getMoreResults(links, nextToken);
-                    updateUrls(tmpUrls);
-                    setNextToken(tmpNextToken);
+          </TableBody>
+          {/*
+          <TableFooter>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell align="center">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={nextToken===null}
+                  onClick={
+                    async () => {
+                      let [tmpUrls, tmpNextToken] = await getMoreResults(links, nextToken);
+                      updateUrls(tmpUrls);
+                      setNextToken(tmpNextToken);
+                    }
                   }
-                }
-              >
-                  Load More Results
-              </Button>
-            </TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableFooter>
-        */}
-      </Table>
-    </TableContainer>
-    
-  </div> /* close container */
+                >
+                    Load More Results
+                </Button>
+              </TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableFooter>
+          */}
+        </Table>
+      </TableContainer>
+    </Grid>
   );
 };
 

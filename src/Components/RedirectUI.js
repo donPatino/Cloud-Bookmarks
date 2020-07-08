@@ -6,6 +6,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import {Grid} from '@material-ui/core';
 
 import { DataStore } from '@aws-amplify/datastore';
 import { Link } from '../models';
@@ -37,13 +38,13 @@ let FinalRedirect = () => {
   // if not valid display error.
   useEffect(() => {
     queryLink(key, setDestination);
-  }, []);
+  }, [key, destination]);
 
   useEffect(() => {
     if (destination) {
       window.location.href = destination;
     }
-  }, destination);
+  }, [destination]);
 
   // Add a test value (e.g. ?debug=true)
 
@@ -69,7 +70,7 @@ let RedirectUI = () => {
   let { path } = useRouteMatch();
 
   return(
-    <div>
+    <Grid item>
       <Switch>
         <Route exact path={path}>
           <p>Error: No key provided.</p>
@@ -79,7 +80,7 @@ let RedirectUI = () => {
           <FinalRedirect/>
         </Route>
       </Switch>
-    </div>
+    </Grid>
   );
 };
 

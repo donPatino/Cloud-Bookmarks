@@ -1,29 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 
 import { Link } from './models';
 
-import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink
-} from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import LinkTable from './Components/LinkTable';
 import AddLink from './Components/AddLink';
 import RedirectUI from './Components/RedirectUI';
 import NoMatch from './Components/NoMatch';
+import Layout from './Components/Layout';
 
-import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
 import Amplify from '@aws-amplify/core';
 import awsconfig from "./aws-exports";
-import { red } from '@material-ui/core/colors';
+// import { red } from '@material-ui/core/colors';
 Amplify.configure(awsconfig);
 
 const App = () => {
@@ -63,6 +56,7 @@ const App = () => {
   const deleteAllLinks = async () => {
     console.log("Deleting all Links");
     let res = await DataStore.delete(Link, Predicates.ALL);
+    console.log(res);
   };
 
   const deleteLink = async (link) => {
@@ -79,58 +73,27 @@ const App = () => {
   // Need to add a sign out listener that will clear datastore
 
   return (
-    <AmplifyAuthenticator usernameAlias="email">
-        <AmplifySignIn headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
-    <Router>
+        <Layout>
+          
+            <Route exact path="/">
+              <LinkTable
+                links={links}
+                nextToken={nextToken}
+                setNextToken={setNextToken}
+              />
+            </Route>
+            
+            <Route exact path="/add">
+              <AddLink />
+            </Route>
+            
+            <Route path="/r">
+              <RedirectUI/>
+            </Route>
+            
+            <Route component={NoMatch} />
 
-      <AppBar>
-        <Toolbar className="toolbar">
-          <Typography variant="h3" className="title">
-            Web Bookmarks
-          </Typography>
-          <Button
-            component={NavLink}
-            exact
-            to="/"
-            activeStyle={{background:"red",fontWeight:"bold"}}
-          >
-            Table
-          </Button>
-          <Button
-            component={NavLink}
-            to="/add"
-            activeStyle={{background:"red",fontWeight:"bold"}}
-          >
-            Add
-          </Button>
-          <AmplifySignOut />
-        </Toolbar>
-      </AppBar>
-
-      <div className="spacer">
-        <Switch>
-          <Route exact path="/">
-            <LinkTable
-              links={links}
-              nextToken={nextToken}
-              setNextToken={setNextToken}
-            />
-          </Route>
-          
-          <Route exact path="/add">
-            <AddLink />
-          </Route>
-          
-          <Route path="/r">
-            <RedirectUI/>
-          </Route>
-          
-          <Route component={NoMatch} />
-          
-        </Switch>
-      </div>
-    </Router>
-    </AmplifyAuthenticator>
+        </Layout>
   );
 };
 

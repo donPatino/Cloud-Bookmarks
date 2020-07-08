@@ -6,7 +6,8 @@ import {
   Box,
   Button,
   Paper,
-  TextField
+  TextField,
+  Grid
 } from '@material-ui/core';
 
 import { DataStore } from '@aws-amplify/datastore';
@@ -23,10 +24,7 @@ let AddLink = ({urls, updateUrls}) => {
   };
 
     return (
-      <div className="container">
-      
-        <div>
-        </div>
+          <Grid item>
             <Paper className="form-paper">
               <Formik
                 initialValues={{ key: '', destination: '' }}
@@ -97,8 +95,7 @@ let AddLink = ({urls, updateUrls}) => {
                 )}
               </Formik>
           </Paper>
-
-      </div>
+        </Grid>
     );
 };
 
