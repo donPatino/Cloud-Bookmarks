@@ -72,9 +72,9 @@ const deleteUrlButton = async (link) => {
 let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
 
   return (
-    <Grid item>
+    <Grid item xs={12}>
       <TableContainer component={Paper}>
-        <Table>
+        <Table size="medium">
           <TableHead>
             <TableRow>
               <TableCell>

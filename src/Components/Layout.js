@@ -17,15 +17,20 @@ const Layout = ({children}) => (
         <Router>
             <Header />
 
-            <Box className="spacer">
-                <Container maxWidth="md">
-                    <Grid container direction="column" alignItems="center">
-                        <Switch>
-                            {children}
-                        </Switch>
+            <Container>
+                <Grid container direction="column" alignItems="center">
+                    <Grid item>
+                        <div className="spacer">
+                            some shit
+                        </div>
                     </Grid>
-                </Container>
-            </Box >
+                    <Switch>
+                        {children}
+                    </Switch>
+                </Grid>
+            </Container>
+            
+            {/* </Box > */}
             
         </Router>
     </AmplifyAuthenticator>
