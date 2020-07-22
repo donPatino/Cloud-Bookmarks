@@ -10,6 +10,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TableFooter,
 } from '@material-ui/core';
 
 import {Link} from "react-router-dom";
@@ -71,6 +72,20 @@ const deleteUrlButton = async (link) => {
 
 let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
 
+  let exportLinks = () => {
+    console.log("Export");
+
+    // Clean objects before exporting
+    let cleanLinks = links.map(link => ({key: link.key, destination: link.destination}))
+    const jsonLinks = JSON.stringify(cleanLinks);
+    var data = new Blob([jsonLinks], {type: 'text/csv'});
+    var csvURL = window.URL.createObjectURL(data);
+    let tempLink = document.createElement('a');
+    tempLink.href = csvURL;
+    tempLink.setAttribute('download', 'CloudBookmarkLinks.json');
+    tempLink.click();
+  };
+
   return (
     <Grid item xs={12}>
       <TableContainer component={Paper}>
@@ -107,12 +122,14 @@ let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
             }
 
           </TableBody>
-          {/*
+
+
           <TableFooter>
             <TableRow>
               <TableCell></TableCell>
               <TableCell align="center">
-                <Button
+                <Button onClick={exportLinks}>Export</Button>
+                {/* <Button
                   variant="contained"
                   color="primary"
                   disabled={nextToken===null}
@@ -125,12 +142,11 @@ let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
                   }
                 >
                     Load More Results
-                </Button>
+                </Button> */}
               </TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableFooter>
-          */}
         </Table>
       </TableContainer>
     </Grid>

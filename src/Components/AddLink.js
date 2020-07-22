@@ -33,12 +33,12 @@ let AddLink = ({urls, updateUrls}) => {
               initialValues={{ key: '', destination: '' }}
               validate={values => {
                 const errors = {};
-  
+
                 // Validate key
                 if (!values.key) {
                   errors.key = 'Required';
                 }
-  
+
                 // Validate destination
                 if (!values.destination) {
                   errors.destination = 'Required';
