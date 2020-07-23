@@ -8,7 +8,7 @@ const Header = () => (
     <AppBar>
         <Toolbar className="toolbar">
             <Typography variant="h3" className="title">
-                Web Bookmarks
+                Cloud Bookmarks
             </Typography>
             <Button
                 component={NavLink}
