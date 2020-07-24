@@ -14,10 +14,16 @@ import RedirectUI from './Components/RedirectUI';
 import NoMatch from './Components/NoMatch';
 import Layout from './Components/Layout';
 
-import Amplify from '@aws-amplify/core';
+import Amplify, {Hub} from '@aws-amplify/core';
 import awsconfig from "./aws-exports";
 // import { red } from '@material-ui/core/colors';
 Amplify.configure(awsconfig);
+
+Hub.listen('auth', async (data) => {
+  if (data.payload.event === 'signOut') {
+    await DataStore.clear();
+  }
+});
 
 const App = () => {
   // States
@@ -71,6 +77,9 @@ const App = () => {
   }, []);
 
   // Need to add a sign out listener that will clear datastore
+  // useEffect(() => {
+
+  // });
 
   return (
         <Layout>
