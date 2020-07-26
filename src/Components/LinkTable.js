@@ -109,7 +109,7 @@ let LinkTable = ({links, updateUrls, nextToken, setNextToken}) => {
               links.map((link, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                    <Link to={`/r/${link.key}`}>{link.key}</Link>
+                    <Link rel="noopener noreferrer" target="_blank" to={`/r/${link.key}`}>{link.key}</Link>
                   </TableCell>
                   <TableCell>
                     {link.destination}
