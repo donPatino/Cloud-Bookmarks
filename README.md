@@ -4,6 +4,7 @@ Feel free to deploy this app to your AWS Account, for use with your own domain n
 
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/donPatino/Cloud-Bookmarks)
 
+When using the above button the build fails because `src/aws-exports.js` is not published to the repo. I found that it is easier to use `amplify init --app https://github.com/donPatino/Cloud-Bookmarks` as detailed in this [document](https://aws.amazon.com/blogs/mobile/amplify-cli-adds-scaffolding-support-for-amplify-apps-and-authoring-plugins/) because a new `src/aws-exports.js` is created.
 
 
 ## AWS Services Used
