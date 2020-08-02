@@ -13,7 +13,9 @@
         },
         "categories": {
             "auth": {
-                "cloudbookmarks29ef4d5e": {}
+                "cloudbookmarks29ef4d5e": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFIg9Qe\"}]"
+                }
             }
         }
     },
@@ -31,7 +33,9 @@
         },
         "categories": {
             "auth": {
-                "cloudbookmarks29ef4d5e": {}
+                "cloudbookmarks29ef4d5e": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFlg9Qe\"}]"
+                }
             }
         }
     }

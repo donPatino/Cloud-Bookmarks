@@ -7,13 +7,15 @@ import Header from './Header';
 
 const Layout = ({children}) => (
     <AmplifyAuthenticator
+        
         style={{
             display: 'flex',
             justifyContent: 'center',
         }}
         usernameAlias="email"
     >
-        <AmplifySignIn  headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
+        
+        <AmplifySignIn headerText="Sign in to use your Cloud Bookmarks" slot="sign-in"></AmplifySignIn>
         <Router>
             <Header />
 
