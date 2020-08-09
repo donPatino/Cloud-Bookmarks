@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 
+import Auth from '@aws-amplify/auth';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 
 import { Link } from './models';
@@ -18,12 +19,6 @@ import Amplify, {Hub} from '@aws-amplify/core';
 import awsconfig from "./aws-exports";
 // import { red } from '@material-ui/core/colors';
 Amplify.configure(awsconfig);
-
-Hub.listen('auth', async (data) => {
-  if (data.payload.event === 'signOut') {
-    await DataStore.clear();
-  }
-});
 
 const App = () => {
   // States
@@ -72,14 +67,45 @@ const App = () => {
 
   // Hooks
   useEffect(() => {
-    listLinks();
-    subscribeLinks();
+    // Start syncing datastore once a user is authenticated
+    let _getLinks = async () => {
+      try {
+        let currentUser = await Auth.currentAuthenticatedUser();
+        if (currentUser !== undefined) {
+          DataStore.start();
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    _getLinks()
   }, []);
 
-  // Need to add a sign out listener that will clear datastore
-  // useEffect(() => {
+  
+  useEffect(() => {
+    // Start syncing datastore at signin; clear at signout
+    Hub.listen('auth', async (data) => {
+      if (data.payload.event === 'signIn') {
+        DataStore.start();
+      }
+      
+      if (data.payload.event === 'signOut') {
+        await DataStore.clear();
+      }
+    });
+  }, [])
 
-  // });
+  
+  useEffect(() => {
+    // Obtain links once datastore is ready (after auth)
+    Hub.listen('datastore', async (capsule) => {
+      const {payload: { event, data }} = capsule;
+      if (event === "ready") {
+        listLinks();
+        subscribeLinks();
+      }
+    })
+  }, [])
 
   return (
         <Layout>
