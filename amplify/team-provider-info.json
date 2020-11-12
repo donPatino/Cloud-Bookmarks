@@ -1,42 +1,42 @@
 {
-    "prod": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-cloud-bookmarks-prod-112854-authRole",
-            "UnauthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-prod-112854-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-prod-112854-authRole",
-            "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-cloud-bookmarks-prod-112854-deployment",
-            "UnauthRoleName": "amplify-cloud-bookmarks-prod-112854-unauthRole",
-            "StackName": "amplify-cloud-bookmarks-prod-112854",
-            "StackId": "arn:aws:cloudformation:us-east-2:460288031152:stack/amplify-cloud-bookmarks-prod-112854/f14a2de0-c9dc-11ea-9536-02c25da8714e",
-            "AmplifyAppId": "d14qi5ygwl7fe"
-        },
-        "categories": {
-            "auth": {
-                "cloudbookmarks29ef4d5e": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFIg9Qe\"}]"
-                }
-            }
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cloud-bookmarks-dev-102047-authRole",
+      "UnauthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-dev-102047-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-dev-102047-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-cloud-bookmarks-dev-102047-deployment",
+      "UnauthRoleName": "amplify-cloud-bookmarks-dev-102047-unauthRole",
+      "StackName": "amplify-cloud-bookmarks-dev-102047",
+      "StackId": "arn:aws:cloudformation:us-east-2:460288031152:stack/amplify-cloud-bookmarks-dev-102047/bfbb90f0-d4d3-11ea-a86b-0ade6091f9d8",
+      "AmplifyAppId": "d3zm6hnm03gi7"
     },
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-cloud-bookmarks-dev-102047-authRole",
-            "UnauthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-dev-102047-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-dev-102047-authRole",
-            "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-cloud-bookmarks-dev-102047-deployment",
-            "UnauthRoleName": "amplify-cloud-bookmarks-dev-102047-unauthRole",
-            "StackName": "amplify-cloud-bookmarks-dev-102047",
-            "StackId": "arn:aws:cloudformation:us-east-2:460288031152:stack/amplify-cloud-bookmarks-dev-102047/bfbb90f0-d4d3-11ea-a86b-0ade6091f9d8",
-            "AmplifyAppId": "d3zm6hnm03gi7"
-        },
-        "categories": {
-            "auth": {
-                "cloudbookmarks29ef4d5e": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFlg9Qe\"}]"
-                }
-            }
+    "categories": {
+      "auth": {
+        "cloudbookmarks29ef4d5e": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFlg9Qe\"}]"
         }
+      }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cloud-bookmarks-prod-112854-authRole",
+      "UnauthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-prod-112854-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::460288031152:role/amplify-cloud-bookmarks-prod-112854-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-cloud-bookmarks-prod-112854-deployment",
+      "UnauthRoleName": "amplify-cloud-bookmarks-prod-112854-unauthRole",
+      "StackName": "amplify-cloud-bookmarks-prod-112854",
+      "StackId": "arn:aws:cloudformation:us-east-2:460288031152:stack/amplify-cloud-bookmarks-prod-112854/f14a2de0-c9dc-11ea-9536-02c25da8714e",
+      "AmplifyAppId": "d14qi5ygwl7fe"
+    },
+    "categories": {
+      "auth": {
+        "cloudbookmarks29ef4d5e": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"103674061586-vjv3dhco5oqg60t59rjp6natt9f0arod.apps.googleusercontent.com\",\"client_secret\":\"YsXYbdCdkjH7ouUuykFIg9Qe\"}]"
+        }
+      }
+    }
+  }
 }

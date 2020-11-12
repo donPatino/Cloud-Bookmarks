@@ -24,12 +24,22 @@ const App = () => {
   // States
   const [links, setLinks] = useState([]);
   const [nextToken, setNextToken] = useState();
+  
+  let linkSub = null;
 
   // Actions
   const subscribeLinks = () => {
     console.log("Subscribing to Links");
-    DataStore.observe(Link).subscribe(msg => {
-      listLinks();
+      linkSub = DataStore.observe(Link).subscribe(({ element, opType }) => {
+      console.log('subscription', element, opType);
+      const opTypeUpdaters = {
+        DELETE: (users) => users.filter((user) => user.id !== element.id),
+        INSERT: (users) => [element, ...users],
+        UPDATE: (users) =>
+          users.map((user) => (user.id === element.id ? element : user)),
+      };
+
+      setLinks(opTypeUpdaters[opType]);
     });
   };
 
@@ -52,7 +62,7 @@ const App = () => {
       c.key("eq", id)
     );
     console.log(link);
-  }
+  };
 
   const deleteAllLinks = async () => {
     console.log("Deleting all Links");
@@ -77,35 +87,47 @@ const App = () => {
       } catch (err) {
         console.log(err);
       }
-    }
-    _getLinks()
+    };
+    _getLinks();
   }, []);
 
   
   useEffect(() => {
     // Start syncing datastore at signin; clear at signout
-    Hub.listen('auth', async (data) => {
+    const removeListener = Hub.listen('auth', async (data) => {
       if (data.payload.event === 'signIn') {
-        DataStore.start();
+        await DataStore.start();
       }
       
       if (data.payload.event === 'signOut') {
         await DataStore.clear();
       }
     });
-  }, [])
+    
+    return () => {
+      removeListener();
+    };
+  }, []);
 
   
   useEffect(() => {
     // Obtain links once datastore is ready (after auth)
-    Hub.listen('datastore', async (capsule) => {
-      const {payload: { event, data }} = capsule;
+    const removeListener = Hub.listen('datastore', async (capsule) => {
+      const {payload: { event }} = capsule;
       if (event === "ready") {
         listLinks();
-        subscribeLinks();
+        return;
       }
-    })
-  }, [])
+    });
+    
+    listLinks();
+    subscribeLinks();
+    
+    return () => {
+      linkSub && linkSub.unsubscribe();
+      removeListener();
+    };
+  }, []);
 
   return (
         <Layout>
